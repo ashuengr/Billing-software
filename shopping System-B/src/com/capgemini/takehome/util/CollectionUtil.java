@@ -13,10 +13,11 @@ static {
 	getProducts().put(1003, new Product(1003,"Teddy","Toys",800));
 	getProducts().put(1004, new Product(1004,"Telescope","Toys",5000));
 }
-public static Map<Integer,Product> getProducts() {
+public static Map<Integer, Product> getProducts() {
 	return products;
 }
-public static void setProducts(Map<Integer,Product> products) {
+public static void setProducts(Map<Integer, Product> products) {
 	CollectionUtil.products = products;
 }
+
 }

@@ -19,32 +19,38 @@ public class ProductService implements IProductService{
     else
     	return product;
 	}
+	@Override
 public boolean validateProductCode(int productCode)throws InvalidProductCodeException
 {
 	if(productCode >999 && productCode<10000)
-		return false;
-	else
 		return true;
+	else
+		throw new InvalidProductCodeException("Sorry!The product code is not available");
+
 }
+	@Override
 public boolean validateProductQuantity(int productQuantity)throws InvalidProductQuantityException
 {
 	if(productQuantity<=0)
 		throw new InvalidProductQuantityException("Quantity should not less than or equal to zero");
 	else
-		return false;
+		return true;
 	}
-public int calculateTotalBill(int productCode,int productQuantity)throws InvalidProductQuantityException,InvalidProductCodeException{
-	int totalBill=0;
-	if(productCode<=0)
-		throw new InvalidProductCodeException("Sorry!The product code is not available");
-	else
-	{
-		if(productQuantity<=0)
-			throw new InvalidProductQuantityException("Quantity should not less than or equal to zero");
-		else
-		{
-			System.out.println("Product Name:"+product.getProductName());
-		}
-	}
+	@Override
+public float calculateTotalbill(int productCode,int productQuantity) throws InvalidProductCodeException{
+			product=getProductDetails( productCode);
+			float totalPrice=product.getProductPrice()*productQuantity;
+	       return totalPrice; 
 }
+	@Override
+public void display(int productCode,int productQuantity) throws InvalidProductCodeException{
+		    product=getProductDetails( productCode);
+			System.out.println("Product Name:"+product.getProductName());
+			System.out.println("Product Category : "+ product.getProductCategory());
+			System.out.println("Product Price (Rs) : "+ product.getProductPrice());
+			System.out.println("Product Quantity : "+ productQuantity);
+			System.out.println("Total price"+calculateTotalbill( productCode, productQuantity));
+		}
+	
+
 }
